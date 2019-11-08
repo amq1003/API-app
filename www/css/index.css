@@ -1,0 +1,67 @@
+/*Homework 8 index css*/
+body {
+	background-color: #c7fcc0;
+}
+
+h1 {
+	text-align:center;
+	-webkit-animation: colorchange .5s infinite alternate;
+}
+
+@-webkit-keyframes colorchange {
+	0% {
+		color: pink;
+	}
+	
+	50% {
+		color: powderblue;
+	}
+	
+	100% {
+		color: #cc99ff;
+	}
+}
+
+h3 {
+	color: #cc99ff;
+	text-align:center;
+}
+
+hr {
+	border-top: 10px dotted powderblue;
+}
+
+p {
+	text-align: center;
+	font-size: 200%;
+	color: pink;
+}
+
+.img1 {
+	width:120px;
+	height:120px;
+	float:left;
+}
+
+.img2 {
+	transform: scaleX(-1);
+	width:120px;
+	height:120px;
+	float: right;
+}
+
+a:link, a:visited {
+  color: #cc99ff;
+  padding: 14px 25px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: powderblue;
+}
+
+ul {
+	color: pink;
+	font-size: 150%;
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<meta charset="utf-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+<!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+<style>
+img
+{
+display: block;
+margin: 0;
+padding: 0;
+}
+table{
+vertical-align: center;
+border: none;
+border-spacing: 0;
+padding: 0;
+spacing: 0;
+}
+
+body {
+	background-color: pink;
+}
+</style>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript">
+document.addEventListener("deviceReady", onDeviceReady, false);
+
+function onDeviceReady()
+{
+console.log("Device ready...");
+document.getElementById('btn').addEventListener('click', getCameraImage, false);
+document.getElementById('btn2').addEventListener('click', getCameraImage2, false);
+console.log("button active...");
+}
+function getCameraImage()
+{
+let opts = {
+quality : 50,
+allowEdit : false,
+destinationType : Camera.DestinationType.FILE_URI,
+sourceType : Camera.PictureSourceType.CAMERA,
+mediaType : Camera.MediaType.PICTURE,
+encodingType : Camera.EncodingType.JPEG,
+cameraDirection : Camera.Direction.BACK,
+};
+navigator.camera.getPicture(onCaptureSuccess, onCaptureError, opts);
+}
+function getCameraImage2()
+{
+let opts = {
+quality : 50,
+allowEdit : false,
+destinationType : Camera.DestinationType.FILE_URI,
+sourceType : Camera.PictureSourceType.CAMERA,
+mediaType : Camera.MediaType.PICTURE,
+encodingType : Camera.EncodingType.JPEG,
+cameraDirection : Camera.Direction.BACK,
+};
+navigator.camera.getPicture(onCaptureSuccess2, onCaptureError, opts);
+}
+function onCaptureSuccess(ImageURI)
+{
+
+msg.textContent = ImageURI;
+var smallImage = document.getElementById('cameraImage');
+smallImage.src = ImageURI;
+}
+function onCaptureSuccess2(ImageURI)
+{
+
+document.images[0].src = ImageURI;
+document.images[1].src = ImageURI;
+document.images[2].src = ImageURI;
+document.images[4].src = ImageURI;
+
+
+}
+function onCaptureError(message)
+{
+var msg = document.getElementById('msg');
+msg.textContent = 'Capture error: ' + message;
+}
+</script>
+<title>Camera</title>
+</head>
+
+<body>
+
+<button id="btn">Capture photo</button>
+<button id="btn2">Capture border photo</button>
+<br />
+<table align="center" cellpadding = "0">
+<!--Row 1-->
+<tr>
+<td colspan="2"><img id="cameraImage2" src="img/logo.png" width="200px" height="50px"/> </td>
+<td rowspan="2"><img id="cameraImage2" src="img/logo.png" width="50px" height="200px"/> </td>
+</tr>
+
+<!--Row 2-->
+<tr>
+<td rowspan="2"><img id="cameraImage2" src="img/logo.png" width="50px" height="200px"/></td>
+<td><img id="cameraImage" src="img/logo.png" width="150px" height="150px"/> </td>
+</tr>
+
+<!--Row 3-->
+<tr>
+<td colspan="2"><img id="cameraImage2" src="img/logo.png" width="200px" height="50px"/></td>
+</tr>
+
+<p id="msg"></p>
+
+</body>
+</html>
